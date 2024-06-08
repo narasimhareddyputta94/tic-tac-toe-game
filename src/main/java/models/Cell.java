@@ -4,12 +4,21 @@ public class Cell {
 
     private int row;
     private int column;
-    private CellState cellState;
+    private static CellState cellState;
     private Player player;
 
     public Cell(int row, int column) {
         this.row = row;
         this.column = column;
+    }
+
+    public void display() {
+       if(cellState == CellState.FILLED) {
+           System.out.print("|" + player.getSymbol() + "|");
+
+       } else {
+           System.out.print("|"+"_"+"|");
+       }
     }
 
     public int getRow() {

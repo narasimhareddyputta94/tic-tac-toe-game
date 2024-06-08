@@ -31,6 +31,10 @@ public class Game {
         return new Builder();
     }
 
+    public void printBoard() {
+        board.printBoard();
+    }
+
     public static class Builder {
         private List<Player> players;
         private List<WinningStrategy> winningStrategies;

@@ -35,4 +35,16 @@ public class Board {
     public void setDimension(int dimension) {
         this.dimension = dimension;
     }
+
+    public void printBoard() {
+        for (List<Cell> row : board) {
+            for (Cell cell : row) {
+                cell.display();
+            }
+            System.out.println();
+
+        }
+    }
+
+
 }

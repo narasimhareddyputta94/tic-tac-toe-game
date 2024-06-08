@@ -1,4 +1,5 @@
 package models;
 
-public class CellState {
+public enum CellState {
+    FILLED,EMPTY
 }
