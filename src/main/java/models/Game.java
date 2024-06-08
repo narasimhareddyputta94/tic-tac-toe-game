@@ -1,9 +1,14 @@
 package models;
 
 import exception.MoreThanOneBotException;
+import exception.SymbolsNotUniqueException;
+import exception.dimensionislessthan3exception;
+import exception.minimunmplayersexception;
 import stratagies.WinningStrategy;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Game {
    private List<Player> players;
@@ -31,7 +36,7 @@ public class Game {
         private List<WinningStrategy> winningStrategies;
         private int dimension;
 
-        public Game build() throws MoreThanOneBotException {
+        public Game build() throws MoreThanOneBotException, SymbolsNotUniqueException, dimensionislessthan3exception, minimunmplayersexception {
             /*
                 1. Validating the number of bots allowed in the game
                 2. Validating the number of players allowed in the game
@@ -42,9 +47,29 @@ public class Game {
 
             ValidateBotCount();
             ValidateUniqueSymbolForPlayers();
-            ValidateDimension();
+            ValidateDimensionandPlayerCount();
 
             return new Game(dimension,players,winningStrategies);
+
+        }
+
+        private void ValidateDimensionandPlayerCount() throws dimensionislessthan3exception, minimunmplayersexception {
+            if (dimension < 3) {
+                throw new dimensionislessthan3exception();
+            }
+            if (players.size() < 2 ) {
+                throw new minimunmplayersexception();
+            }
+        }
+
+        private void ValidateUniqueSymbolForPlayers() throws SymbolsNotUniqueException {
+            Set<Character> symbols = new HashSet<>();
+            for (Player player : players) {
+                if (symbols.contains(player.getSymbol())) {
+                    throw new SymbolsNotUniqueException();
+                }
+                symbols.add(player.getSymbol());
+            }
 
         }
 
