@@ -12,11 +12,11 @@ public class Board {
         board = new ArrayList<>();
 
         for (int i = 0; i < dimension; i++) {
-            List<Cell> row = new ArrayList<>();
+           board.add(new ArrayList<>());
             for (int j = 0; j < dimension; j++) {
-                row.add(new Cell(i, j));
+                board.get(i).add(new Cell(i, j));
             }
-            board.add(row);
+
         }
     }
 

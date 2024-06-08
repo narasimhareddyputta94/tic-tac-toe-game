@@ -1,5 +1,7 @@
 package models;
 
+import stratagies.WinningStrategy;
+
 import java.util.List;
 
 public class Game {
@@ -9,6 +11,44 @@ public class Game {
    private Player winner;
    private GameState gameState;
    private int nextPlayerIndex;
+   private List<WinningStrategy> winningStrategies;
+   private int dimension;
+
+
+    private Game(int dimension,List<Player> players, List<WinningStrategy> winningStrategies) {
+        this.board = new Board(dimension);
+        this.players = players;
+        this.winningStrategies = winningStrategies;
+    }
+
+    public static Builder getBuilder() {
+        return new Builder();
+    }
+
+    public static class Builder {
+        private List<Player> players;
+        private List<WinningStrategy> winningStrategies;
+        private int dimension;
+
+        public Game build() {
+            return new Game(dimension,players,winningStrategies);
+        }
+
+        public Builder setPlayers(List<Player> players) {
+            this.players = players;
+            return this;
+        }
+
+        public Builder setDimension(int dimension) {
+            this.dimension = dimension;
+            return this;
+        }
+
+        public Builder setWinningStrategies(List<WinningStrategy> winningStrategies) {
+            this.winningStrategies = winningStrategies;
+            return this;
+        }
+    }
 
 
 
