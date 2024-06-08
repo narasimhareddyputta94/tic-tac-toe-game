@@ -1,10 +1,24 @@
 package models;
 
-import java.util.List;
+import java.util.*;
+
 
 public class Board {
     private int dimension;
     private List<List<Cell>> board;
+
+    public Board(int dimension) {
+        this.dimension = dimension;
+        board = new ArrayList<>();
+
+        for (int i = 0; i < dimension; i++) {
+            List<Cell> row = new ArrayList<>();
+            for (int j = 0; j < dimension; j++) {
+                row.add(new Cell(i, j));
+            }
+            board.add(row);
+        }
+    }
 
     public List<List<Cell>> getBoard() {
         return board;
