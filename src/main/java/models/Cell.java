@@ -7,6 +7,11 @@ public class Cell {
     private CellState cellState;
     private Player player;
 
+    public Cell(int row, int column) {
+        this.row = row;
+        this.column = column;
+    }
+
     public int getRow() {
         return row;
     }
