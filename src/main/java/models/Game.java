@@ -1,5 +1,6 @@
 package models;
 
+import exception.MoreThanOneBotException;
 import stratagies.WinningStrategy;
 
 import java.util.List;
@@ -30,8 +31,33 @@ public class Game {
         private List<WinningStrategy> winningStrategies;
         private int dimension;
 
-        public Game build() {
+        public Game build() throws MoreThanOneBotException {
+            /*
+                1. Validating the number of bots allowed in the game
+                2. Validating the number of players allowed in the game
+                3. Validating the dimension of the board
+                4. Validating the winning strategies
+
+             */
+
+            ValidateBotCount();
+            ValidateUniqueSymbolForPlayers();
+            ValidateDimension();
+
             return new Game(dimension,players,winningStrategies);
+
+        }
+
+        private void ValidateBotCount() throws MoreThanOneBotException {
+            int botCount = 0;
+            for (Player player : players) {
+                if (player.getPlayerType().equals(PlayerType.BOT)) {
+                    botCount++;
+                }
+            }
+            if (botCount > 1) {
+                throw new MoreThanOneBotException();
+            }
         }
 
         public Builder setPlayers(List<Player> players) {
