@@ -7,7 +7,7 @@ import exception.dimensionislessthan3exception;
 import exception.minimunmplayersrequiredshouldbe1lessthansizeofboardexception;
 import models.*;
 import winningstratagies.ColumnWinningStrategy;
-import winningstratagies.DiagonalWinningStratregy;
+import winningstratagies.DiagonalWinningStrategy;
 import winningstratagies.RowWinningstrategy;
 import winningstratagies.WinningStrategy;
 
@@ -29,7 +29,7 @@ public class App {
 
         winningStrategies.add(new RowWinningstrategy());
         winningStrategies.add(new ColumnWinningStrategy());
-        winningStrategies.add(new DiagonalWinningStratregy());
+        winningStrategies.add(new DiagonalWinningStrategy());
 
         Game game = gameController.startGame(dimension, playerList, winningStrategies);
 
