@@ -15,20 +15,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class App {
-    public static void main(String[] args) throws dimensionislessthan3exception, SymbolsNotUniqueException, MoreThanOneBotException, minimunmplayersrequiredshouldbe1lessthansizeofboardexception {
+    public static void main(String[] args) {
         GameController gameController = new GameController();
-        int dimension = 3;
         List<Player> playerList = new ArrayList<>();
-        List<WinningStrategy> winningStrategies = new ArrayList<>();
-
         playerList.add(new Player('X', "Player1", 1, PlayerType.HUMAN));
-        playerList.add(new Bot('O', "Player2", 2, PlayerType.BOT, BotDifficultylevel.EASY));
-
+        playerList.add(new Player('O', "Player2", 2, PlayerType.HUMAN));
+        List<WinningStrategy> winningStrategies = new ArrayList<>();
         winningStrategies.add(new RowWinningstrategy());
         winningStrategies.add(new ColumnWinningStrategy());
         winningStrategies.add(new DiagonalWinningStratregy());
-
-        Game game = gameController.startGame(dimension, playerList, winningStrategies);
+        Game game = null;
+        try {
+            game = gameController.startGame(3, playerList, winningStrategies);
+        } catch (dimensionislessthan3exception e) {
+            throw new RuntimeException(e);
+        } catch (SymbolsNotUniqueException e) {
+            throw new RuntimeException(e);
+        } catch (MoreThanOneBotException e) {
+            throw new RuntimeException(e);
+        } catch (minimunmplayersrequiredshouldbe1lessthansizeofboardexception e) {
+            throw new RuntimeException(e);
+        }
         game.printBoard();
 
 

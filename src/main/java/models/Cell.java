@@ -3,22 +3,14 @@ package models;
 public class Cell {
 
     private int row;
-    private int column;
-    private static CellState cellState;
+    private int col;
+    private CellState cellState;
     private Player player;
 
-    public Cell(int row, int column) {
+    public Cell(int row, int col) {
         this.row = row;
-        this.column = column;
-    }
-
-    public void display() {
-       if(CellState.FILLED.equals(cellState)) {
-           System.out.print("|" + player.getSymbol() + "|");
-
-       } else if (CellState.EMPTY.equals(cellState)){
-           System.out.print("|"+"_"+"|");
-       }
+        this.col = col;
+        this.cellState = CellState.EMPTY;
     }
 
     public int getRow() {
@@ -29,12 +21,12 @@ public class Cell {
         this.row = row;
     }
 
-    public Player getPlayer() {
-        return player;
+    public int getCol() {
+        return col;
     }
 
-    public void setPlayer(Player player) {
-        this.player = player;
+    public void setCol(int col) {
+        this.col = col;
     }
 
     public CellState getCellState() {
@@ -45,11 +37,26 @@ public class Cell {
         this.cellState = cellState;
     }
 
-    public int getColumn() {
-        return column;
+    public Player getPlayer() {
+        return player;
     }
 
-    public void setColumn(int column) {
-        this.column = column;
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public void display() {
+
+        if (CellState.FILLED.equals(cellState)) {
+            System.out.print("| "+player.getSymbol()+" |");
+        }
+        else if(cellState.equals(CellState.EMPTY)){
+            System.out.print("| - |");
+        }
+
+
+
+
+
     }
 }
