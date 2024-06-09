@@ -52,6 +52,7 @@ public class Game {
             gameState = GameState.DRAW;
             return;
         }
+        nextPlayerIndex = (nextPlayerIndex + 1) % players.size();
     }
 
     private boolean checkWinner(Move move, Board board) {
