@@ -25,6 +25,7 @@ public class ColumnWinningStrategy implements WinningStrategy {
 
         // Check if the column has all cells filled with the same symbol
         if (colMap.get(symbol) == board.getDimension()) {
+            System.out.println("Column Winner - Player " + symbol + " wins!");
             return true;
         }
 

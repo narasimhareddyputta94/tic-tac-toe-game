@@ -40,6 +40,8 @@ public class App {
                 2. do you want to undo
                 3 make move?
             */
+
+
             game.printBoard();
 
 

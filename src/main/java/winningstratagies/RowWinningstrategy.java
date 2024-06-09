@@ -34,6 +34,7 @@ public class RowWinningstrategy implements WinningStrategy{
         // check if the row is full
 
         if(map.get(row).get(symbol) == board.getDimension()){
+            System.out.println("Row Winner - Player "+symbol+" wins!");
             return true;
         }
         return false;

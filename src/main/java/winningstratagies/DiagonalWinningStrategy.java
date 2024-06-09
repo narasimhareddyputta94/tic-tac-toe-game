@@ -22,6 +22,7 @@ public class DiagonalWinningStrategy implements WinningStrategy {
         if (row == col) {
             mainDiagonalCounts.put(symbol, mainDiagonalCounts.getOrDefault(symbol, 0) + 1);
             if (mainDiagonalCounts.get(symbol) == dimension) {
+                System.out.print("Diagonal Winner " + symbol + " wins!");
                 return true;
             }
         }
@@ -30,6 +31,7 @@ public class DiagonalWinningStrategy implements WinningStrategy {
         if (row + col == dimension - 1) {
             antiDiagonalCounts.put(symbol, antiDiagonalCounts.getOrDefault(symbol, 0) + 1);
             if (antiDiagonalCounts.get(symbol) == dimension) {
+                System.out.print("Diagonal Winner "+ symbol + " wins!");
                 return true;
             }
         }
