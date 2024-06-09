@@ -35,6 +35,34 @@ public class Game {
         board.printBoard();
     }
 
+    public void makeMove() {
+        Player player = players.get(nextPlayerIndex);
+        Cell cell = player.makeMove(board);
+        Move move = new Move(cell,player);
+        moves.add(move);
+
+        if(checkWinner(move,board)){
+            gameState = GameState.WIN;
+            winner = player;
+            return;
+
+            
+        }
+        if(moves.size() == dimension * dimension) {
+            gameState = GameState.DRAW;
+            return;
+        }
+    }
+
+    private boolean checkWinner(Move move, Board board) {
+        for (WinningStrategy winningStrategy : winningStrategies) {
+            if (winningStrategy.checkWinner(board , move)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static class Builder {
         private List<Player> players;
         private List<WinningStrategy> winningStrategies;

@@ -19,7 +19,7 @@ public class App {
         GameController gameController = new GameController();
         List<Player> playerList = new ArrayList<>();
         playerList.add(new Player('X', "Player1", 1, PlayerType.HUMAN));
-        playerList.add(new Player('O', "Player2", 2, PlayerType.HUMAN));
+        playerList.add(new Bot('0', "GPT", 2, PlayerType.BOT, BotDifficultylevel.EASY));
         List<WinningStrategy> winningStrategies = new ArrayList<>();
         winningStrategies.add(new RowWinningstrategy());
         winningStrategies.add(new ColumnWinningStrategy());

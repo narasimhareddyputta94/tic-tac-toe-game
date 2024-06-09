@@ -45,4 +45,8 @@ public class Player {
     public void setSymbol(char symbol) {
         this.symbol = symbol;
     }
+
+    public Cell makeMove(Board board) {
+        return null;
+    }
 }
