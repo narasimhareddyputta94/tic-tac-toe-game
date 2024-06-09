@@ -13,31 +13,45 @@ import winningstratagies.WinningStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class App {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws dimensionislessthan3exception, SymbolsNotUniqueException, MoreThanOneBotException, minimunmplayersrequiredshouldbe1lessthansizeofboardexception {
         GameController gameController = new GameController();
+        Scanner scanner = new Scanner(System.in);
+
+        int dimension = 3;
         List<Player> playerList = new ArrayList<>();
-        playerList.add(new Player('X', "Player1", 1, PlayerType.HUMAN));
-        playerList.add(new Bot('0', "GPT", 2, PlayerType.BOT, BotDifficultylevel.EASY));
         List<WinningStrategy> winningStrategies = new ArrayList<>();
+
+        playerList.add(new Player('X', "Keerthi", 1, PlayerType.HUMAN));
+        playerList.add(new Bot('0', "GPT", 2, PlayerType.BOT, BotDifficultylevel.EASY));
+
         winningStrategies.add(new RowWinningstrategy());
         winningStrategies.add(new ColumnWinningStrategy());
         winningStrategies.add(new DiagonalWinningStratregy());
-        Game game = null;
-        try {
-            game = gameController.startGame(3, playerList, winningStrategies);
-        } catch (dimensionislessthan3exception e) {
-            throw new RuntimeException(e);
-        } catch (SymbolsNotUniqueException e) {
-            throw new RuntimeException(e);
-        } catch (MoreThanOneBotException e) {
-            throw new RuntimeException(e);
-        } catch (minimunmplayersrequiredshouldbe1lessthansizeofboardexception e) {
-            throw new RuntimeException(e);
+
+        Game game = gameController.startGame(dimension, playerList, winningStrategies);
+
+        while(game.getGameState().equals(GameState.IN_PROGRESS)){
+
+            /*
+                1. print board
+                2. do you want to undo
+                3 make move?
+            */
+            game.printBoard();
+
+
+            gameController.makeMove(game);
         }
-        game.printBoard();
 
-
+        // If I'm here, it means game is not in progress anymore
+        if(GameState.WIN.equals(game.getGameState())){
+            System.out.println(game.getWinner().getName()+", Congrats! You won the Game :)");
+        }
+        if(GameState.DRAW.equals(game.getGameState())){
+            System.out.println("Match tied :| ");
+        }
     }
 }

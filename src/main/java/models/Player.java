@@ -51,25 +51,33 @@ public class Player {
     }
 
     public Cell makeMove(Board board) {
-    System.out.println(this.name + " make your move enter row and column");
-    int row = scanner.nextInt();
-    int col = scanner.nextInt();
 
-    while(validateMove(row,col,board)){
-        System.out.println("Invalid move, try again");
-        row = scanner.nextInt();
-        col = scanner.nextInt();
+        System.out.println(this.name+", It's your turn to make the move, enter row and col");
+
+        int row = scanner.nextInt();
+        int col = scanner.nextInt();
+
+        while(validateMove(row, col, board)==false){
+            System.out.println(this.name+", Invalid move, please try again ");
+
+            row = scanner.nextInt();
+            col = scanner.nextInt();
+        }
+
+        // now we've a valid move.
+        Cell cell = board.getBoard().get(row).get(col);
+        cell.setCellState(CellState.FILLED);
+        cell.setPlayer(this);
+
+        return cell;
     }
 
-    board.getBoard().get(row).get(col).setCellState(CellState.FILLED);
-    board.getBoard().get(row).get(col).setPlayer(this);
-    return board.getBoard().get(row).get(col);
-
-
-}
 
     private boolean validateMove(int row, int col, Board board) {
-        if(row < 0 || row >= board.getDimension() || col < 0 || col >= board.getDimension()){
+        if(row>=board.getDimension() || row<0){
+            return false;
+        }
+        if(col>=board.getDimension() || col<0){
             return false;
         }
         if(!CellState.EMPTY.equals(board.getBoard().get(row).get(col).getCellState())){

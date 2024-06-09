@@ -17,6 +17,7 @@ public class GameController {
                 .setDimension(dimension)
                 .setPlayers(playerList)
                 .setWinningStrategies(winningStrategies)
+
                 .build();
 
     }
