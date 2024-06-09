@@ -13,10 +13,10 @@ public class Cell {
     }
 
     public void display() {
-       if(cellState == CellState.FILLED) {
+       if(CellState.FILLED.equals(cellState)) {
            System.out.print("|" + player.getSymbol() + "|");
 
-       } else {
+       } else if (CellState.EMPTY.equals(cellState)){
            System.out.print("|"+"_"+"|");
        }
     }
