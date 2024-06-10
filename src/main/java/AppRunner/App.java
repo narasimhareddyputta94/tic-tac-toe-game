@@ -42,7 +42,18 @@ public class App {
             */
 
 
+
+
             game.printBoard();
+
+            System.out.println("Do you want to undo the last move? (Y/N)");
+
+            String undo = scanner.next();
+
+            if("Y".equalsIgnoreCase(undo)){
+                gameController.undoMove(game);
+                continue;
+            }
 
 
             gameController.makeMove(game);
