@@ -31,4 +31,15 @@ public class ColumnWinningStrategy implements WinningStrategy {
 
         return false;
     }
+
+    @Override
+    public boolean undoWinningMove(Board board, Move lastMove) {
+        int col = lastMove.getCell().getCol();
+        char symbol = lastMove.getPlayer().getSymbol();
+
+        // Decrement the count for the symbol in the column
+        columnCounts.get(col).put(symbol, columnCounts.get(col).get(symbol) - 1);
+
+        return false;
+    }
 }

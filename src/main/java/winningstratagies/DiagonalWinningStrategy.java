@@ -38,4 +38,24 @@ public class DiagonalWinningStrategy implements WinningStrategy {
 
         return false;
     }
+
+    @Override
+    public boolean undoWinningMove(Board board, Move lastMove) {
+        int row = lastMove.getCell().getRow();
+        int col = lastMove.getCell().getCol();
+        char symbol = lastMove.getPlayer().getSymbol();
+        int dimension = board.getDimension();
+
+        // Check main diagonal
+        if (row == col) {
+            mainDiagonalCounts.put(symbol, mainDiagonalCounts.get(symbol) - 1);
+        }
+
+        // Check anti-diagonal
+        if (row + col == dimension - 1) {
+            antiDiagonalCounts.put(symbol, antiDiagonalCounts.get(symbol) - 1);
+        }
+
+        return false;
+    }
 }
