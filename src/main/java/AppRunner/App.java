@@ -25,7 +25,7 @@ public class App {
         List<WinningStrategy> winningStrategies = new ArrayList<>();
 
         playerList.add(new Player('X', "Keerthi", 1, PlayerType.HUMAN));
-        playerList.add(new Bot('0', "GPT", 2, PlayerType.BOT, BotDifficultylevel.EASY));
+        playerList.add(new Bot('0', "GPT", 2, PlayerType.BOT, BotDifficultylevel.HARD));
 
         winningStrategies.add(new RowWinningstrategy());
         winningStrategies.add(new ColumnWinningStrategy());
